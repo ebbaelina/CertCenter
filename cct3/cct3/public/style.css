@@ -1,0 +1,127 @@
+.divSearch {
+    display: flex;
+}
+
+.btnSearch {
+    align-self: flex-end;
+}
+
+.ids-table td, th{
+    border-left: 0px !important; 
+}
+
+.tableRowActive {
+    background-color: #f6f1e9;
+    border-bottom: 0px !important;
+}
+
+.tableRowExpanded b {
+    color: #a33662;
+}
+
+.tableRowActive #IconchevronBald {
+    rotate: 270deg;
+}
+
+.tableRowExpanded{
+    background-color:  #fefbf7;
+    border-bottom: 0px !important;
+}
+
+tr
+{
+    line-height:40px;
+}
+
+#IconchevronBald{
+    rotate: 90deg;  
+}
+
+#IconCopyFile{
+    width: 16px;
+    height: 16px;
+}
+
+/*.ids-icon{
+    width: 16px !important;
+}*/
+
+.material-symbols-outlined {
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+}
+
+th:hover .material-symbols-outlined {
+    opacity: 1;
+}
+
+/*.ids-table{
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    background-color: white !important;
+}*/
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 6px;
+}
+
+ids-icon-copy-file {
+    display: inline !important;
+}
+
+.dialog-icons {
+    display: inline !important;
+}
+
+.selected::after {
+    display: none;
+}
+
+/*.nav-item--selected>a::after {
+    right: 0;
+    width: auto;
+    background: #a33662 !important; 
+}
+
+
+.nav-item--selected>a::after {
+    bottom: 0;
+    content: "" ;
+    display: block;
+    height: 5px;
+    left: 0;
+    position: absolute;
+    transition: all .3s ease;
+    opacity: 1 !important;
+    
+}*/
+
+.ids-select-wrapper {
+    width: 100%;
+}
+
+.ids-dialog__body {
+    width: 500px;
+}
+
+#ids-textArea {
+    width: 484px !important;
+}
+
+.delete-question {
+    color: black !important;
+}
+
+.update-delete-btn svg{
+    color: pink !important;
+}
