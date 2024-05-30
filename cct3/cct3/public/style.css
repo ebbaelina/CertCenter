@@ -17,6 +17,7 @@
 
 .tableRowExpanded b {
     color: #a33662;
+    /*color: #353636*/
 }
 
 .tableRowActive #IconchevronBald {
@@ -24,7 +25,7 @@
 }
 
 .tableRowExpanded{
-    background-color:  #fefbf7;
+    background-color:  #f6f1e9;
     border-bottom: 0px !important;
 }
 
@@ -37,15 +38,6 @@ tr
     rotate: 90deg;  
 }
 
-#IconCopyFile{
-    width: 16px;
-    height: 16px;
-}
-
-/*.ids-icon{
-    width: 16px !important;
-}*/
-
 .material-symbols-outlined {
     opacity: 0;
     transition: opacity 0.3s ease; 
@@ -55,16 +47,18 @@ th:hover .material-symbols-outlined {
     opacity: 1;
 }
 
-/*.ids-table{
-    border-top: 0px !important;
-    border-left: 0px !important;
-    border-right: 0px !important;
-    background-color: white !important;
-}*/
-
 .container {
     display: flex;
     flex-direction: row;
+}
+
+.textfield-container{
+    display: flex;
+}
+
+.textfield-div{
+    justify-content: flex-start;
+    max-width: 600px;
 }
 
 .container-icon {
@@ -87,25 +81,6 @@ ids-icon-copy-file {
     display: none;
 }
 
-/*.nav-item--selected>a::after {
-    right: 0;
-    width: auto;
-    background: #a33662 !important; 
-}
-
-
-.nav-item--selected>a::after {
-    bottom: 0;
-    content: "" ;
-    display: block;
-    height: 5px;
-    left: 0;
-    position: absolute;
-    transition: all .3s ease;
-    opacity: 1 !important;
-    
-}*/
-
 .ids-select-wrapper {
     width: 100%;
 }
@@ -122,6 +97,13 @@ ids-icon-copy-file {
     color: black !important;
 }
 
-.update-delete-btn svg{
-    color: pink !important;
+
+.update-btn{
+    background: none; 
+  border: none;   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
