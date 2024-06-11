@@ -1,23 +1,17 @@
 export const searchCert = async (searchParams) => {
-    const { hsaId, commonName, owner, endDateBefore } = searchParams;
+    const {subject, endDateBefore } = searchParams;
 
 
     let url = `https://certcenter.tnmt.nordicmedtest.se/certificates?show_name_attr=true&`;
 
 
-    if (commonName) {
-        url += `subject=${commonName}&`;
-    }
-    if (hsaId) {
-        url += `subject=${hsaId}&`;
+    if (subject) {
+        url += `subject=${subject}&`;
     }
     if (endDateBefore) {
         url += `enddate_before=${endDateBefore}&`;
     }
-    if (owner) {
-        const ownerCapitalize = owner.charAt(0).toUpperCase() + owner.slice(1);
-        url += `subject=${ownerCapitalize}&`;
-    }
+ 
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();

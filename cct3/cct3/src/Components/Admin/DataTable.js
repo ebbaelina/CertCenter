@@ -10,7 +10,7 @@ import CopyAlertError from '../Common/CopyAlertError';
 function DataTable({ data }) {
   const [expandedRow, setExpandedRow] = useState(null);
   const [sortBy, setSortBy] = useState({ column: null, direction: 'asc' });
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(null);
 
   const onClickSort = (column) => {
     if (sortBy.column === column) {
@@ -28,7 +28,6 @@ function DataTable({ data }) {
     } if (sortBy.column === 'endDate') {
       return sortBy.direction === 'asc' ? a.enddate.localeCompare(b.enddate) : b.enddate.localeCompare(a.enddate);
     }
-    //fixa denna!! 
     /*if (sortBy.column === 'owner') {
       return sortBy.direction === 'asc' ? a.subject.attr.organizationName.localeCompare(b.subject.attr.organizationName) : b.subject.attr.organizationName.localeCompare(a.subject.attr.organizationName);
     }*/
@@ -116,7 +115,7 @@ function DataTable({ data }) {
   }
 
   return (
-    <table tabIndex={0} className="ids-table ids-mt-3 ids-mb-5">
+    <table tabIndex={0} className="ids-table ids-mt-3">
       <tbody>
         <tr className='tableHeaderRow'>
           <th onClick={() => onClickSort('commonName')}>Certifikatnamn <span className="material-symbols-outlined">swap_vert</span></th>

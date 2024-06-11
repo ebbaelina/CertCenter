@@ -10,11 +10,11 @@ function SearchFieldCommon() {
     const [isSearchPerformed, setIsSearchPerformed] = useState(false);
     const [fetchedData, setFetchedData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [searchMessage, setSearchMessage] = useState('');
+    const [numberOfHits, setNumberOfHits] = useState('');
 
     const [searchParams, setSearchParams] = useState({
-        hsaId: '',
-        commonName: '',
-        owner: '',
+        subject: '', 
         endDateBefore: ''
     });
 
@@ -25,22 +25,39 @@ function SearchFieldCommon() {
         });
     }
 
+    const generateSearchMessage = (searchParams) => {
+        let message = 'Du sökte efter: ';
+        let filters = [];
+
+        if (searchParams.subject) filters.push(`${searchParams.subject}`);
+        if (searchParams.endDateBefore) filters.push(`${searchParams.endDateBefore}`);
+
+        if (filters.length === 0) {
+            message += 'inga filter angetts';
+        } else {
+            message += filters.join(', ');
+        }
+        return message;
+
+    }
+
     const searchbtn = async () => {
         console.log(JSON.stringify(searchParams));
         try {
             setLoading(true);
             const data = await searchCert(searchParams);
-            console.log(data);
+            let number = 'Antal träffar: ' + data.response_data.length;
 
+            setNumberOfHits(number); 
+            setSearchMessage(generateSearchMessage(searchParams));
 
             setFetchedData(data);
             setIsSearchPerformed(true);
 
             //rensar input-fälten 
             setSearchParams({
-                hsaId: '',
-                commonName: '',
-                owner: ''
+                subject: '',
+                endDateBefore: ''
             });
 
         } catch (error) {
@@ -53,45 +70,33 @@ function SearchFieldCommon() {
 
     return (
         <IDSContainer>
-            <IDSRow className="ids-mt-5">
-                <IDSCol cols="2" m='4' s='12' className='ids-mr-5'>
-                    <IDSInput>
-                        <label>HSA-id</label>
-                        <input type="text" name='hsaId' onChange={(e) => handleChange(e, 'hsaId')} value={searchParams.hsaId}></input>
-                    </IDSInput>
-                </IDSCol>
+<IDSRow>
+<IDSCol className='ids-mr-4' cols="4" m='4' s='12'>
 
-                <IDSCol cols="2" m='4' s='12' className='ids-mr-5'>
-                    <IDSInput>
-                        <label>Certifikatnamn</label>
-                        <input type="text" name='commonName' onChange={(e) => handleChange(e, 'commonName')} value={searchParams.commonName} ></input>
-                    </IDSInput>
-                </IDSCol>
+  <IDSInput>
+    <label>Hitta certifikat</label>
+    <input  className='input-search' type="search" placeholder="Sök på HSA-id, certifikatnamn eller ägare" name='subject' onChange={(e) => handleChange(e, 'subject')} value={searchParams.subject}></input>
+  </IDSInput>
 
-                <IDSCol cols="2" m='4' s='12' className='ids-mr-5'>
-                    <IDSInput>
-                        <label>Ägare</label>
-                        <input type="text" name='owner' onChange={(e) => handleChange(e, 'owner')} value={searchParams.owner}></input>
-                    </IDSInput>
-                </IDSCol>
+</IDSCol >
+<IDSCol className='ids-mr-4' cols="4" m='4' s='12'>
 
-                <IDSCol cols="2" m='4' s='12' className='ids-mr-5'>
-                    <IDSInput>
-                        <label>Gilltig innan</label>
-                        <input type="date" name='endDateBefore' onChange={(e) => handleChange(e, 'endDateBefore')} value={searchParams.endDateBefore} ></input>
-                    </IDSInput>
-                </IDSCol>
-                <IDSCol className="btnSearch ids-mr-5" cols="1" m='1' s='1' >
-                    <div className="divSearch">
-                        <IDSButton className="ids-mt-4" onClick={searchbtn} type="submit">Sök</IDSButton>
-                    </div>
-                </IDSCol>
+  <IDSInput>
+    <label>Giltig till</label>
+    <input className='input-search'type="search" placeholder="åååå-mm-dd" name='endDateBefore' onChange={(e) => handleChange(e, 'endDateBefore')} value={searchParams.endDateBefore}></input>
+  </IDSInput>
+</IDSCol>
+<IDSCol className='btnSearch'>
+<IDSButton className="btn-search" search={true} onClick={searchbtn}>
+      Sök
+    </IDSButton>
+</IDSCol>
+</IDSRow>
 
-
-            </IDSRow>
-            {loading ? (
+{loading ? (
                 <IDSSpinner className='ids-mt5' live="polite" srtext="The spinner has finished loading!" />
-            ) : null}
+            ) : <div className='search-message'><p className='ids-body ids-mt-5'>{searchMessage}</p>
+        <p className='ids-body ids-mt-5 ids-ml-5'>{numberOfHits}</p></div>}
             {isSearchPerformed ? (
                 fetchedData && fetchedData.response_data && fetchedData.response_data.length !== 0 ? (
                     <DataTableCommon data={fetchedData} />
@@ -102,5 +107,6 @@ function SearchFieldCommon() {
         </IDSContainer>
     );
 }
+
 
 export default SearchFieldCommon; 

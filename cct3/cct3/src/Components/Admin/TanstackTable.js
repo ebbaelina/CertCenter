@@ -3,10 +3,12 @@ import { useTable, useSortBy, useExpanded } from 'react-table';
 import { copyPEM, DownloadCSR, DownloadPEM, copyCSR, DownloadP12 } from '../../api/searchApi';
 import { IDSContainer, IDSIconChevronBold, IDSLink, IDSIconCopyFile, IDSAlert, IDSIconDownload, IDSCheckbox, IDSIconArrow } from '@inera/ids-react';
 import moment from 'moment';
+import DeleteDialog from './DeleteDialog';
+import UpdateDialog from './UpdateDialog';
 import CopyAlert from '../Common/CopyAlert';
 import CopyAlertError from '../Common/CopyAlertError';
 
-function DataTableCommon({ data }) {
+function TanstackTable({ data }) {
   const [copied, setCopied] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
 
@@ -206,6 +208,11 @@ function DataTableCommon({ data }) {
                           <a href="javascript:void(0)" onClick={() => { downloadP12(row.original.pubkey_hash); }}>Ladda ner P12</a>
                         </IDSLink>
                       </div>
+
+                      <IDSContainer className='container-icon'>
+                        <UpdateDialog className='dialog-icons' message={row.original.subject.attr.commonName} />
+                        <DeleteDialog className='dialog-icons' message={row.original.subject.attr.commonName} />
+                      </IDSContainer>
                     </IDSContainer>
                     </div>
                   </td>
@@ -219,5 +226,5 @@ function DataTableCommon({ data }) {
   );
 }
 
-export default DataTableCommon;
+export default TanstackTable;
 

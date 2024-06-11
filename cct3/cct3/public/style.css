@@ -1,3 +1,47 @@
+/*Här är alla för tanstacktable*/
+
+.chevron-expanded {
+    rotate: 270deg;
+}
+
+.chevron-notExpanded{
+    rotate: 90deg;;
+}
+
+.icon-arrow{
+    display: table-row;
+    margin-left: 2px;
+}
+
+.icon-arrow-desc {
+    rotate: 90deg;
+}
+
+.icon-arrow-asc {
+    rotate: 270deg;
+}
+
+.tablerow-expanded {
+    background-color: white;
+}
+
+.container-expanded{
+    padding: 5px;
+background: #F6F1E9;
+border-radius: 10px;
+margin: 0px 0px;
+}
+
+.tableData-expanded{
+    border: 0px !important;
+    padding-top: 0px !important;
+}
+
+.tablerow-expanded b {
+    color: #a33662;
+}
+/*Här är alla för tanstacktable*/
+
 .divSearch {
     display: flex;
 }
@@ -20,14 +64,44 @@
     /*color: #353636*/
 }
 
+.search-message {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-search {
+    height: 60px;
+}
+
+.input-create{
+    height: 60px;
+}
+
 .tableRowActive #IconchevronBald {
     rotate: 270deg;
 }
+
 
 .tableRowExpanded{
     background-color:  #f6f1e9;
     border-bottom: 0px !important;
 }
+
+/* Search.css */
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .content-wrap {
+    flex: 1;
+  }
+  
+  footer {
+    margin-top: auto;
+  }
+  
 
 tr
 {

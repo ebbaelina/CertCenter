@@ -8,7 +8,7 @@ import SuccessMessageUpdate from './SuccessMessageUpdate';
 function UpdateDialog(props) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [certUpdated, setcertUpdated] = useState(false);
+    const [certUpdated, setcertUpdated] = useState(null);
 
     const updateBtn = async () => {
         if (selectedFile) {
@@ -22,7 +22,13 @@ function UpdateDialog(props) {
             setcertUpdated(false);
         }
     }
+
     }
+
+    const handleOk = () => {
+        setcertUpdated(null);
+        setDialogOpen(false);
+    };
 
     return (
 
@@ -60,17 +66,14 @@ function UpdateDialog(props) {
                         ></input>
                     </IDSContainer>
                 </form>
-                <IDSButtonGroup >
-                    <IDSButton secondary onClick={() => {
-                        updateBtn()
-                        setDialogOpen(false)
-                    }}
-                    >Avbryt</IDSButton>
-                    <IDSButton onClick={() => {
-                        updateBtn()
-                    }}
-                    >Updatera</IDSButton>
-                </IDSButtonGroup>
+                {certUpdated === null ? (
+                    <IDSButtonGroup>
+                        <IDSButton secondary onClick={() => setDialogOpen(false)}>Avbryt</IDSButton>
+                        <IDSButton onClick={updateBtn}>Updatera</IDSButton>
+                    </IDSButtonGroup>
+                ) : (
+                    <IDSButton onClick={handleOk}>Ok</IDSButton>
+                )}
                 {certUpdated === true && (
                     <SuccessMessageUpdate message={props.message}></SuccessMessageUpdate>
                 )}

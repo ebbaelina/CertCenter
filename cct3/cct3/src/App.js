@@ -26,7 +26,7 @@ const [loggedin, setLoggedIn] = useState(true);
         <Routes>
           <Route exact path='/' element={loggedin? <Search/> : <Navigate to= '/common'></Navigate>} />
           <Route exact path='/create' element={ loggedin? <Create/> : <Navigate to = '/common'></Navigate>} />
-          <Route exact path= '/common' element={<SearchCommon/>}/>
+          <Route exact path= '/common' element={!loggedin? <SearchCommon/> : <Navigate to='/'></Navigate>}/>
         </Routes>
     </Router>
   );
